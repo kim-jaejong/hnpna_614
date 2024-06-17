@@ -6,6 +6,7 @@ import 'home/home_page.dart';
 import 'login/auth_provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     const MyApp(),
   );
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
     permission.requestPermissions().then((isGranted) {
       if (!isGranted) {
         permission.showPermissionMessage(context);
+        print('권한허용 안됨 ');
         return;
       }
     });

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hnpna_0614/login/login.dart';
+import '../login/login.dart';
 import '../Notice/notice.dart';
 import '../choose_pictures/choose_pictures.dart';
 import '../making_print_type/making_print_type.dart';
-import '../previous_albums/previous_albums.dart';
+//import '../previous_albums/previous_albums.dart';
 import '../rebuild_phone_folders/rebuild_phone_folders.dart';
 import '../request_print/request_print.dart';
 import '../view_selected_pictures/view_selected_pictures.dart';
@@ -43,14 +43,21 @@ class _HomePageState extends State<HomePage> {
       body: IndexedStack(
         index: _selectedIndex,
         children: const [
-          HomePage(),
+//          HomePage(),
           RebuildPhoneFolders(),
+// 주제에 따라 사진 선택하기
+// 날짜별 (년 월 기간 )
+          // 위치별 (지역별)
+// 사람. 꽃, 해변, 산, 동물, 건물, 음식, 물건, 풍경, 기타
+//          ChoosePictures(),
+          ChoosePictures(),
           ChoosePictures(),
           ViewSelectedPictures(),
           MakingPrintType(),
           RequestPrint(),
-//          PreviousAlbums(),
-          Chatting(),
+//     PreviousAlbums(),
+//     다른 사람 작품 보기
+          //    다른 사람에게  보여주기(무료)
           Chatting(),
           Notice(),
         ],
