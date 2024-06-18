@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_selfie_segmentation/google_mlkit_selfie_segmentation.dart';
-import 'coordinates_translator.dart';
+import 'painter/coordinates_translator.dart';
 
 class SegmentationPainter extends CustomPainter {
   SegmentationPainter(

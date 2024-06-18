@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 // import 'nlp_detector_views/smart_reply_view.dart';
 // import 'vision_detector_views/barcode_scanner_view.dart';
 // import 'vision_detector_views/digital_ink_recognizer_view.dart';
-// import 'vision_detector_views/face_detector_view.dart';
 // import 'vision_detector_views/face_mesh_detector_view.dart';
+// import 'vision_detector_views/text_detector_view.dart';
+import 'vision_detector_views/face_detector_view.dart';
 import 'vision_detector_views/label_detector_view.dart';
 import 'vision_detector_views/object_detector_view.dart';
-// import 'vision_detector_views/pose_detector_view.dart';
+import 'vision_detector_views/pose_detector_view.dart';
 import 'vision_detector_views/selfie_segmenter_view.dart';
-// import 'vision_detector_views/text_detector_view.dart';
 
 class ChoosePictures extends StatelessWidget {
   const ChoosePictures({super.key});
@@ -32,52 +32,44 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Google ML Kit Demo App'),
-        centerTitle: true,
-        elevation: 0,
-      ),
-      body: const SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: [
-                  ExpansionTile(
-                    title: Text('Vision APIs'),
-                    children: [
-                      // CustomCard('Barcode Scanning', BarcodeScannerView()),
-                      // CustomCard('Face Detection', FaceDetectorView()),
-                      // CustomCard('Face Mesh Detection', FaceMeshDetectorView()),
-                      CustomCard('Image Labeling', ImageLabelView()),
-                      CustomCard('Object Detection', ObjectDetectorView()),
-                      // CustomCard('Text Recognition', TextRecognizerView()),
-                      // CustomCard('Digital Ink Recognition', DigitalInkView()),
-                      // CustomCard('Pose Detection', PoseDetectorView()),
-                      CustomCard('Selfie Segmentation', SelfieSegmenterView()),
-                    ],
-                  ),
-                  // SizedBox(
-                  //   height: 20,
-                  // ),
-                  // ExpansionTile(
-                  //   title: const Text('Natural Language APIs'),
-                  //   children: [
-                  //     CustomCard('Language ID', LanguageIdentifierView()),
-                  //     CustomCard(
-                  //         'On-device Translation', LanguageTranslatorView()),
-                  //     CustomCard('Smart Reply', SmartReplyView()),
-                  //     CustomCard('Entity Extraction', EntityExtractionView()),
-                  //   ],
-                  // ),
-                ],
-              ),
-            ),
-          ),
+        appBar: AppBar(
+          title: const Text('Google ML Kit Demo App'),
+          centerTitle: true,
+          elevation: 0,
         ),
-      ),
-    );
+        body: const SafeArea(
+            child: Center(
+                child: SingleChildScrollView(
+                    child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Column(children: [
+                          ExpansionTile(title: Text('Vision APIs'), children: [
+                            CustomCard('Image Labeling', ImageLabelView()),
+                            CustomCard(
+                                'Object Detection', ObjectDetectorView()),
+                            CustomCard('Face Detection', FaceDetectorView()),
+                            CustomCard('Pose Detection', PoseDetectorView()),
+                            CustomCard(
+                                'Selfie Segmentation', SelfieSegmenterView())
+                            // CustomCard('Barcode Scanning', BarcodeScannerView()),
+                            // CustomCard('Face Mesh Detection', FaceMeshDetectorView()),
+                            // CustomCard('Text Recognition', TextRecognizerView()),
+                            // CustomCard('Digital Ink Recognition', DigitalInkView()),
+                          ])
+                          // SizedBox(
+                          //   height: 20,
+                          // ),
+                          // ExpansionTile(
+                          //   title: const Text('Natural Language APIs'),
+                          //   children: [
+                          //     CustomCard('Language ID', LanguageIdentifierView()),
+                          //     CustomCard(
+                          //         'On-device Translation', LanguageTranslatorView()),
+                          //     CustomCard('Smart Reply', SmartReplyView()),
+                          //     CustomCard('Entity Extraction', EntityExtractionView()),
+                          //   ],
+                          // ),
+                        ]))))));
   }
 }
 
@@ -135,6 +127,33 @@ class CustomCard extends StatelessWidget {
 // 따라서 ObjectDetectorView에서 감지할 수 있는 객체는 선택한 모델에 따라 다르지만,
 // 일반적으로 사람, 동물, 자동차 등의 일반적인 객체를 감지할 수 있으며,
 // 특정 모델을 사용하면 과일, 꽃, 새 등의 특정 카테고리의 객체를 감지할 수 있다.
+
+//SelfieSegmenterView()는 사용자의 셀피 이미지에서 사람의 실루엣을 분리하는 기능을 제공한다.
+// 이는 Google ML Kit의 Selfie Segmentation API를 사용하여 구현된다.
+// 이 기능은 사용자의 셀피 이미지에서 사람과 배경을 분리하므로, 이를 통해 다양한 이미지 편집 기능을 구현할 수 있다.
+// 예를 들어, 배경을 흐리게 하거나, 배경을 다른 이미지로 교체하거나, 사람의 실루엣에 특정 효과를 적용하는 등의 기능을 구현할 수 있다.
+// SelfieSegmenterView()는 DetectorView를 상속받아 구현되며,
+// DetectorView의 onImage 콜백에서 SelfieSegmenter를 사용하여 이미지 처리를 수행한다.
+// 이 때, SelfieSegmenter는 입력 이미지에서 사람의 실루엣을 분리하고, 이를 CustomPaint 위젯을 사용하여 화면에 그린다.
+
+//FaceDetectorView()는 Google ML Kit의 Face Detection API를 사용하여 이미지에서 얼굴을 감지하는 기능을 제공한다.
+// 이는 얼굴의 위치, 얼굴 특징(예: 눈, 코, 입 등)의 위치, 얼굴의 방향, 눈이 열려 있는지 닫혀 있는지, 미소를 짓고 있는지 등의 정보를 제공한다.
+// 이 기능은 다양한 용도로 사용될 수 있다.
+// 예를 들어, 사진에서 사람들의 얼굴을 자동으로 태그하거나, 얼굴 인식을 통한 사용자 인증,
+// 표정을 분석하여 사용자의 감정 상태를 추정하는 등의 용도로 사용할 수 있다.
+// FaceDetectorView()는 DetectorView를 상속받아 구현되며,
+// DetectorView의 onImage 콜백에서 FaceDetector를 사용하여 이미지 처리를 수행한다.
+// 이 때, FaceDetector는 입력 이미지에서 얼굴을 감지하고, 이를 CustomPaint 위젯을 사용하여 화면에 그린다.
+// 이를 통해 사용자는 실시간으로 자신의 얼굴을 확인할 수 있다.
+
+//PoseDetectorView()는 Google ML Kit의 Pose Detection API를 사용하여 이미지에서 사람의 포즈를 감지하는 기능을 제공한다.
+// 이는 사람의 몸의 주요 랜드마크(예: 팔, 다리, 어깨 등)의 위치를 식별하고, 이를 사용하여 사람의 포즈를 분석한다.
+// 이 기능은 다양한 용도로 사용될 수 있다.
+// 예를 들어, 운동이나 댄스의 동작을 분석하거나, 게임에서 플레이어의 동작을 추적하는 등의 용도로 사용할 수 있다.
+// PoseDetectorView()는 DetectorView를 상속받아 구현되며,
+// DetectorView의 onImage 콜백에서 PoseDetector를 사용하여 이미지 처리를 수행한다.
+// 이 때, PoseDetector는 입력 이미지에서 사람의 포즈를 감지하고,
+// 이를 CustomPaint 위젯을 사용하여 화면에 그린다. 이를 통해 사용자는 실시간으로 자신의 포즈를 확인할 수 있다.
 
 //================================================================================================
 // Google ML Kit의 객체 감지 기능은 사전 훈련된 모델을 사용하여 이미지 내의 객체를 감지한다.

@@ -5,7 +5,7 @@ import '../Notice/notice.dart';
 import '../choose_pictures/choose_pictures.dart';
 import '../making_print_type/making_print_type.dart';
 //import '../previous_albums/previous_albums.dart';
-import '../rebuild_phone_folders/rebuild_phone_folders.dart';
+import '../rebuild_folders/rebuild_folders.dart';
 import '../request_print/request_print.dart';
 import '../view_selected_pictures/view_selected_pictures.dart';
 import '../chatting/chatting.dart';
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
         index: _selectedIndex,
         children: const [
 //          HomePage(),
-          RebuildPhoneFolders(),
+          RebuildFolders(),
 // 주제에 따라 사진 선택하기
 // 날짜별 (년 월 기간 )
           // 위치별 (지역별)

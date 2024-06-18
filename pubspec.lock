@@ -29,10 +29,10 @@ packages:
     dependency: transitive
     description:
       name: camera_android_camerax
-      sha256: "7d84815edbb8304b51c10deba3c20f44eef80aa46ff156ec45428ed16600b49a"
+      sha256: "7abb0faddbf103c59365e805ad9a30ab4d602b2eb7a8de469697945fd4a69daa"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.5+5"
+    version: "0.6.5+6"
   camera_avfoundation:
     dependency: transitive
     description:
@@ -166,6 +166,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  flutter_pdfview:
+    dependency: "direct main"
+    description:
+      name: flutter_pdfview
+      sha256: a9055bf920c7095bf08c2781db431ba23577aa5da5a056a7152dc89a18fbec6f
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.2"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -174,6 +182,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.20"
+  flutter_riverpod:
+    dependency: "direct main"
+    description:
+      name: flutter_riverpod
+      sha256: "0f1974eff5bbe774bf1d870e406fc6f29e3d6f1c46bd9c58e7172ff68a785d7d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -200,22 +216,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.2.1"
-  google_ml_kit:
-    dependency: "direct main"
-    description:
-      name: google_ml_kit
-      sha256: e99c8436b81a670dc37dfc4df616637b95b0dbff4896fa8586421497fce1eb98
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.18.0"
-  google_mlkit_barcode_scanning:
-    dependency: transitive
-    description:
-      name: google_mlkit_barcode_scanning
-      sha256: f1a2a39cf1730b9a5e2784a07efa1ca5bfdfdde6aa00b193b3f8cd1953c638ec
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.12.0"
   google_mlkit_commons:
     dependency: "direct main"
     description:
@@ -225,37 +225,29 @@ packages:
     source: hosted
     version: "0.7.1"
   google_mlkit_digital_ink_recognition:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: google_mlkit_digital_ink_recognition
       sha256: "06488a331c4fd2801c2753b801f2d6169ba9593447242828fbfa5960a0ca29a4"
       url: "https://pub.dev"
     source: hosted
     version: "0.12.0"
-  google_mlkit_entity_extraction:
-    dependency: transitive
+  google_mlkit_document_scanner:
+    dependency: "direct main"
     description:
-      name: google_mlkit_entity_extraction
-      sha256: "38f5ccc38a93a3be45383a13bf45b42c14f88fe45be6ce1e051fdc820345684d"
+      name: google_mlkit_document_scanner
+      sha256: "7bd4fc11b1794458a01895b0e2842f057f07cb664ecc645bad48c2ad425132eb"
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.0"
+    version: "0.2.0"
   google_mlkit_face_detection:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: google_mlkit_face_detection
       sha256: "5b597061cafe4dfa70f66adddadd19381eb88bd3312b074528c62b246392304b"
       url: "https://pub.dev"
     source: hosted
     version: "0.11.0"
-  google_mlkit_face_mesh_detection:
-    dependency: transitive
-    description:
-      name: google_mlkit_face_mesh_detection
-      sha256: "6720ca4ff80b56776aff9c454734b7fb09355736467acc34104f5c310675d65c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.0"
   google_mlkit_image_labeling:
     dependency: "direct main"
     description:
@@ -264,14 +256,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.12.0"
-  google_mlkit_language_id:
-    dependency: transitive
-    description:
-      name: google_mlkit_language_id
-      sha256: "37fa373d722b4f712216c4c70313d13add07df196427cfaa3f3d6f9f34b4bf9b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.11.0"
   google_mlkit_object_detection:
     dependency: "direct main"
     description:
@@ -281,7 +265,7 @@ packages:
     source: hosted
     version: "0.13.0"
   google_mlkit_pose_detection:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: google_mlkit_pose_detection
       sha256: "9fd037c53f1122127659ea0bcf73e6ed67f1d10d8072a631a629b82d8c4be260"
@@ -296,30 +280,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.8.0"
-  google_mlkit_smart_reply:
-    dependency: transitive
-    description:
-      name: google_mlkit_smart_reply
-      sha256: c11aa3caa0031ccdafe80388816f7d9f7c6ab1a07733c6ff725d498a69185d35
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.11.0"
   google_mlkit_text_recognition:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: google_mlkit_text_recognition
       sha256: "89c848329355f165ff17ca8645cab5998770e9e25e431fe6dd8261ed9cf7bdc4"
       url: "https://pub.dev"
     source: hosted
     version: "0.13.0"
-  google_mlkit_translation:
-    dependency: transitive
-    description:
-      name: google_mlkit_translation
-      sha256: "6e346ed299d9c49d1228d2c6773e335a2de5680bd1b0f267c0b024c1d68743b5"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.11.0"
   http:
     dependency: transitive
     description:
@@ -492,10 +460,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_android
-      sha256: "9c96da072b421e98183f9ea7464898428e764bc0ce5567f27ec8693442e72514"
+      sha256: bca87b0165ffd7cdb9cad8edd22d18d2201e886d9a9f19b4fb3452ea7df3a72a
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.5"
+    version: "2.2.6"
   path_provider_foundation:
     dependency: transitive
     description:
@@ -580,10 +548,10 @@ packages:
     dependency: "direct main"
     description:
       name: photo_manager
-      sha256: "1ddee48659025df5c80153a2e85c3fa0f5b5733ecffcda9769a9447da2c51352"
+      sha256: "68d6099d07ce5033170f8368af8128a4555cf1d590a97242f83669552de989b1"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.1"
+    version: "3.2.0"
   platform:
     dependency: transitive
     description:
@@ -608,6 +576,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.2"
+  riverpod:
+    dependency: transitive
+    description:
+      name: riverpod
+      sha256: f21b32ffd26a36555e501b04f4a5dca43ed59e16343f1a30c13632b2351dfa4d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -629,6 +605,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.1"
+  state_notifier:
+    dependency: transitive
+    description:
+      name: state_notifier
+      sha256: b8677376aa54f2d7c58280d5a007f9e8774f1968d1fb1c096adcb4792fba29bb
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   stream_channel:
     dependency: transitive
     description:

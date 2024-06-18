@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'home/permission_manager.dart';
 import 'common/theme.dart';
-import 'home/home_page.dart';
-import 'login/auth_provider.dart';
+import 'move_routes.dart';
+
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    const MyApp(),
-  );
+  runApp(const ProviderScope(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -26,17 +27,13 @@ class MyApp extends StatelessWidget {
       }
     });
 
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => AuthProvider()),
-        // 다른 프로바이더들...
-      ],
-      child: MaterialApp(
-        title: ' 핸드폰 앨범 hnpna 0614',
-        debugShowCheckedModeBanner: false,
-        theme: theme(),
-        home: const HomePage(),
-      ),
+    return MaterialApp(
+      navigatorKey: navigatorKey,
+      title: ' 핸드폰 앨범 hnpna 0614',
+      debugShowCheckedModeBanner: false,
+      theme: theme(),
+      initialRoute: Routes.choosePicturesPage, // Routes.loginPage,
+      routes: getRouters(),
     );
   }
 }

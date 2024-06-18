@@ -46,7 +46,6 @@ class _PictureSegmenterViewState extends State<PictureSegmenterView> {
     setState(() {
       _text = '';
     });
-
     final mask = await _segmenter.processImage(inputImage);
     if (inputImage.metadata?.size != null &&
         inputImage.metadata?.rotation != null &&

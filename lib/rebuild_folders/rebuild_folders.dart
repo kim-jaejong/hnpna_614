@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
 import '../home/image_folders.dart';
 
-class RebuildPhoneFolders extends StatefulWidget {
-  const RebuildPhoneFolders({super.key});
+class RebuildFolders extends StatefulWidget {
+  const RebuildFolders({super.key});
 
   @override
-  State<RebuildPhoneFolders> createState() => _RebuildPhoneFoldersState();
+  State<RebuildFolders> createState() => _RebuildFoldersState();
 }
 
-class _RebuildPhoneFoldersState extends State<RebuildPhoneFolders> {
+class _RebuildFoldersState extends State<RebuildFolders> {
   final ImageFolders _imageFolders = ImageFolders();
 
   @override

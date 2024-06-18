@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
 
 import 'detector_view.dart';
-import 'object_detector_painter.dart';
-import 'utils.dart';
+import 'painter/object_detector_painter.dart';
+import '../../utils/utils.dart';
 
 class ObjectDetectorView extends StatefulWidget {
   const ObjectDetectorView({super.key});

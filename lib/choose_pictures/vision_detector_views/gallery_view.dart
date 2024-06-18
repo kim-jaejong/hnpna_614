@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:google_mlkit_commons/google_mlkit_commons.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'utils.dart';
+import '../../utils/utils.dart';
 
 class GalleryView extends StatefulWidget {
   const GalleryView(
@@ -64,30 +64,19 @@ class _GalleryViewState extends State<GalleryView> {
               height: 400,
               width: 400,
               child: Stack(
-                fit: StackFit.expand,
-                children: <Widget>[
-                  Image.file(_image!),
-                ],
-              ),
-            )
-          : const Icon(
-              Icons.image,
-              size: 200,
-            ),
+                  fit: StackFit.expand,
+                  children: <Widget>[Image.file(_image!)]))
+          : const Icon(Icons.image, size: 200),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ElevatedButton(
-          onPressed: _getImageAsset,
-          child: const Text('From Assets'),
-        ),
+            onPressed: _getImageAsset, child: const Text('From Assets')),
       ),
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ElevatedButton(
-          child: const Text('From Gallery'),
-          onPressed: () => _getImage(ImageSource.gallery),
-        ),
-      ),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: ElevatedButton(
+              child: const Text('From Gallery'),
+              onPressed: () => _getImage(ImageSource.gallery))),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ElevatedButton(
@@ -131,45 +120,38 @@ class _GalleryViewState extends State<GalleryView> {
         context: context,
         builder: (BuildContext context) {
           return Dialog(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0)),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Select image',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  ConstrainedBox(
-                    constraints: BoxConstraints(
-                        maxHeight: MediaQuery.of(context).size.height * 0.7),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          for (final path in assets)
-                            GestureDetector(
-                              onTap: () async {
-                                Navigator.of(context).pop();
-                                _processFile(await getAssetPath(path));
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.asset(path),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: const Text('Cancel')),
-                ],
-              ),
-            ),
-          );
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0)),
+              child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Select image',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        ConstrainedBox(
+                            constraints: BoxConstraints(
+                                maxHeight:
+                                    MediaQuery.of(context).size.height * 0.7),
+                            child: SingleChildScrollView(
+                                child: Column(children: [
+                              for (final path in assets)
+                                GestureDetector(
+                                    onTap: () async {
+                                      Navigator.of(context).pop();
+                                      _processFile(await getAssetPath(path));
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Image.asset(path),
+                                    ))
+                            ]))),
+                        ElevatedButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: const Text('Cancel')),
+                      ])));
         });
   }
 
