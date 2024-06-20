@@ -44,17 +44,16 @@ class Home extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 16),
                         child: Column(children: [
                           ExpansionTile(title: Text('Vision APIs'), children: [
-                            CustomCard('Image Labeling', ImageLabelView()),
-                            CustomCard(
-                                'Object Detection', ObjectDetectorView()),
-                            CustomCard('Face Detection', FaceDetectorView()),
-                            CustomCard('Pose Detection', PoseDetectorView()),
-                            CustomCard(
-                                'Selfie Segmentation', SelfieSegmenterView())
+                            // CustomCard('Face Detection', FaceDetectorView()),
+                            // CustomCard('Pose Detection', PoseDetectorView()),
+                            // CustomCard(  'Selfie Segmentation', SelfieSegmenterView())
+
                             // CustomCard('Barcode Scanning', BarcodeScannerView()),
                             // CustomCard('Face Mesh Detection', FaceMeshDetectorView()),
                             // CustomCard('Text Recognition', TextRecognizerView()),
                             // CustomCard('Digital Ink Recognition', DigitalInkView()),
+                            CustomCard('Image Labeling', ImageLabelView()),
+                            CustomCard('Object Detection', ObjectDetectorView())
                           ])
                           // SizedBox(
                           //   height: 20,

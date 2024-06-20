@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mlkit_commons/google_mlkit_commons.dart';
@@ -58,39 +57,42 @@ class _GalleryViewState extends State<GalleryView> {
   }
 
   Widget _galleryBody() {
-    return ListView(shrinkWrap: true, children: [
-      _image != null
-          ? SizedBox(
-              height: 400,
-              width: 400,
-              child: Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[Image.file(_image!)]))
-          : const Icon(Icons.image, size: 200),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ElevatedButton(
-            onPressed: _getImageAsset, child: const Text('From Assets')),
-      ),
-      Padding(
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        _image != null
+            ? SizedBox(
+                height: 400,
+                width: 400,
+                child: Stack(
+                    fit: StackFit.expand,
+                    children: <Widget>[Image.file(_image!)]))
+            : const Icon(Icons.image, size: 200),
+        Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: ElevatedButton(
-              child: const Text('From Gallery'),
-              onPressed: () => _getImage(ImageSource.gallery))),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ElevatedButton(
-          child: const Text('Take a picture'),
-          onPressed: () => _getImage(ImageSource.camera),
+              onPressed: _getImageAsset, child: const Text('From Assets')),
         ),
-      ),
-      if (_image != null)
         Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-              '${_path == null ? '' : 'Image path: $_path'}\n\n${widget.text ?? ''}'),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: ElevatedButton(
+                child: const Text('갤러리'),
+                onPressed: () => _getImage(ImageSource.gallery))),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: ElevatedButton(
+            child: const Text('촬영'),
+            onPressed: () => _getImage(ImageSource.camera),
+          ),
         ),
-    ]);
+        if (_image != null)
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+                '${_path == null ? '' : '경로: $_path'}\n\n${widget.text ?? ''}'),
+          ),
+      ],
+    );
   }
 
   Future _getImage(ImageSource source) async {
