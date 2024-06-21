@@ -42,12 +42,16 @@ BottomNavigationBarThemeData bottomNavigatorTheme() {
 
 ThemeData theme() {
   return ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-    textTheme: textTheme(),
-    appBarTheme: appBarTheme(),
-    bottomNavigationBarTheme: bottomNavigatorTheme(),
-    primarySwatch: Colors.orange,
-  );
+      scaffoldBackgroundColor: Colors.white,
+      textTheme: textTheme(),
+      appBarTheme: appBarTheme(),
+      bottomNavigationBarTheme: bottomNavigatorTheme(),
+      primarySwatch: Colors.orange,
+      dialogTheme: const DialogTheme(
+          contentTextStyle: TextStyle(fontSize: 10),
+          titleTextStyle: TextStyle(
+            fontSize: 10, // 원하는 글자 크기로 설정
+          )));
 }
 
 enum InputType {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'Notice/notice.dart';
 import 'chatting/chatting.dart';
-import 'choose_pictures/choose_pictures.dart';
+//import 'choose_pictures/choose_pictures.dart';
 import 'login/login.dart';
 import 'making_print_type/making_print_type.dart';
+import 'photo_tagger/photo_tagger.dart';
 import 'previous_albums/previous_albums.dart';
 import 'rebuild_folders/rebuild_folders.dart';
 import 'request_print/request_print.dart';
@@ -12,7 +13,8 @@ import 'view_selected_pictures/view_selected_pictures.dart';
 class Routes {
   static String loginPage = "/login";
   static String rebuildFoldersPage = "/rebuildFolders";
-  static String choosePicturesPage = "/choosePictures";
+//  static String choosePicturesPage = "/choosePictures";
+  static String photoTaggerPage = "/choosePictures";
   static String viewSelectedPicturesPage = "/viewSelectedPictures";
   static String makingPrintTypePage = "/makingPrintType";
   static String requestPrintPage = "/requestPrint";
@@ -25,7 +27,8 @@ Map<String, Widget Function(BuildContext)> getRouters() {
   return {
     Routes.loginPage: (context) => const Login(),
     Routes.rebuildFoldersPage: (context) => const RebuildFolders(),
-    Routes.choosePicturesPage: (context) => const ChoosePictures(),
+//    Routes.choosePicturesPage: (context) => const ChoosePictures(),
+    Routes.photoTaggerPage: (context) => const PhotoTagger(),
     Routes.viewSelectedPicturesPage: (context) => const ViewSelectedPictures(),
     Routes.makingPrintTypePage: (context) => const MakingPrintType(),
     Routes.requestPrintPage: (context) => const RequestPrint(),

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../login/login.dart';
 import '../Notice/notice.dart';
-import '../choose_pictures/choose_pictures.dart';
+//import '../choose_pictures/choose_pictures.dart';
 import '../making_print_type/making_print_type.dart';
 //import '../previous_albums/previous_albums.dart';
 import '../rebuild_folders/rebuild_folders.dart';
@@ -50,8 +50,8 @@ class _HomePageState extends State<HomePage> {
           // 위치별 (지역별)
 // 사람. 꽃, 해변, 산, 동물, 건물, 음식, 물건, 풍경, 기타
 //          ChoosePictures(),
-          ChoosePictures(),
-          ChoosePictures(),
+//           ChoosePictures(),
+//           ChoosePictures(),
           ViewSelectedPictures(),
           MakingPrintType(),
           RequestPrint(),

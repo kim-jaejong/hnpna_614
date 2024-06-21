@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'home/permission_manager.dart';
 import 'common/theme.dart';
 import 'move_routes.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -32,8 +33,16 @@ class MyApp extends StatelessWidget {
       title: ' 핸드폰 앨범 hnpna 0614',
       debugShowCheckedModeBanner: false,
       theme: theme(),
-      initialRoute: Routes.choosePicturesPage, // Routes.loginPage,
+      initialRoute: Routes.photoTaggerPage, // Routes.loginPage,
       routes: getRouters(),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', ''), // English
+        Locale('ko', ''), // Korean
+      ],
     );
   }
 }

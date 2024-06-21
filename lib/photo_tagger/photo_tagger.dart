@@ -99,13 +99,45 @@ class _PhotoTaggerState extends State<PhotoTagger> {
     }
   }
 
-  Future<void> _processAllPhotos() async {
+  Future<void> _processDatePickerPhotos() async {
+    final DateTime? startDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now()
+          .subtract(const Duration(days: 30)), // 한 달 전을 초기 날짜로 설정합니다.
+      firstDate: DateTime(2000),
+      lastDate: DateTime.now(),
+      helpText: '시작일 선택', // 다이얼로그의 타이틀을 설정합니다.
+      locale: const Locale('ko'), // 다이얼로그의 언어를 한국어로 설정합니다.
+    );
+    if (startDate == null) return;
+
+    final DateTime? endDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(), // 현재 날짜를 초기 날짜로 설정합니다.
+      firstDate: startDate,
+      lastDate: DateTime.now(),
+      helpText: '종료일 선택',
+      locale: const Locale('ko'),
+    );
+    if (endDate == null) return;
+
+//    final startDate = DateTime(2024, 6, 1); // 시작 날짜를 지정합니다.
+//     final endDate = DateTime(2024, 6, 10); // 마지막 날짜를 지정합니다.
+
     final albums = await PhotoManager.getAssetPathList(onlyAll: true);
     final recentAlbum = albums.first;
+
     final recentAssets = await recentAlbum.getAssetListRange(
         start: 0, end: 1000000); // 모든 사진을 가져옵니다.
 
-    for (final asset in recentAssets) {
+    // 시작 날짜와 마지막 날짜 사이에 촬영된 사진만 필터링합니다.
+    final filteredAssets = recentAssets.where((asset) {
+      final assetDate = DateTime.fromMillisecondsSinceEpoch(
+          asset.createDateTime.millisecondsSinceEpoch);
+      return assetDate.isAfter(startDate) && assetDate.isBefore(endDate);
+    }).toList();
+
+    for (final asset in filteredAssets) {
       final file = await asset.originFile;
       final inputImage = InputImage.fromFilePath(file!.path);
       final imageLabeler =
@@ -133,7 +165,8 @@ class _PhotoTaggerState extends State<PhotoTagger> {
           IconButton(icon: const Icon(Icons.camera), onPressed: _takePhoto),
           IconButton(icon: const Icon(Icons.photo), onPressed: _selectPhoto),
           IconButton(
-              icon: const Icon(Icons.select_all), onPressed: _processAllPhotos),
+              icon: const Icon(Icons.select_all),
+              onPressed: _processDatePickerPhotos),
           // 갤러리
           IconButton(
               icon: const Icon(Icons.search),
@@ -197,48 +230,58 @@ class _PhotoTaggerState extends State<PhotoTagger> {
 // 이 메서드는 사용자가 입력한 쿼리를 기반으로 데이터베이스에서 사진을 검색합니다.
 // 검색 결과는 _photos 리스트에 저장되며, 이 리스트는 build 메서드에서 ListView.builder를 사용하여 화면에 표시됩니다.
 
-//갤러리에서 이미지를 선택하는 기능을 추가해야 합니다.
-// 이를 위해 _takePhoto 메서드와 유사한 새로운 메서드를 만들어야 합니다.
-// 이 새로운 메서드를 _selectPhoto라고 부르겠습니다.
-// 이 메서드는 ImagePicker를 사용하여 갤러리에서 이미지를 선택하고, 선택한 이미지에 대해 라벨링을 수행한 후,
+//갤러리에서 이미지를 선택하는 기능  : _selectPhoto
+// ImagePicker를 사용하여 갤러리에서 이미지를 선택하고, 선택한 이미지에 대해 라벨링을 수행한 후,
 // 라벨을 데이터베이스에 저장합니다.
-// 또한, AppBar에 새로운 IconButton을 추가하여 사용자가 갤러리에서 이미지를 선택할 수 있도록 해야 합니다.
 
-//_processAllPhotos() 는 photo_manager 패키지를 사용하여 핸드폰 내의 모든 사진에 접근합니다.
-// 각 사진에 대해 ImageLabeler를 사용하여 라벨링을 수행하고, 라벨을 데이터베이스에 저장합니다.
-// 이후에는 라벨을 기반으로 사진을 검색할 수 있습니다.
-// 이 메서드를 호출하려면, 예를 들어 initState 메서드에서 _processAllPhotos를 호출할 수 있습니다.
-// 그러나 이 메서드는 많은 시간이 소요될 수 있으므로, 비동기 처리를 고려해야 합니다.
-// 또한, 이 코드는 모든 사진을 처리하므로 많은 양의 메모리를 사용할 수 있습니다.
-// 따라서 실제 애플리케이션에서는 메모리 사용량을 최적화하고,
-// 사용자에게 진행 상황을 표시하는 등의 추가적인 고려사항이 있을 수 있습니다.
+//=============================================================
+// 라벨을 직접 한글로 번역하는 추가 작업을 위해 Google Cloud Translation API와 같은 번역 서비스를 사용하여
+// 데이터베이스에 저장하고 검색도 영문과 한글로 동시에 할 수 있는 코드
 
-//DateTime endDate = DateTime.now();
-// DateTime startDate = endDate.subtract(Duration(days: 30));
+// Google Cloud Translation API를 사용하여 라벨을 한글로 번역하려면,
+// 먼저 Google Cloud Translation API를 사용할 수 있도록 설정해야 합니다.
+// 이를 위해 Google Cloud Console에서 새 프로젝트를 생성하고,
+// Translation API를 활성화하고, API 키를 생성해야 합니다.  그런
+// 다음, googleapis 패키지를 사용하여 Google Cloud Translation API를 호출할 수 있습니다.
+// 이 패키지는 Flutter에서 Google APIs를 사용하는 데 필요한 클라이언트 라이브러리를 제공합니다.
+// dependencies:
+//   googleapis: ^0.60.0
+//translateLabels 함수를 만들어 라벨을 한글로 번역합니다.
+// 이 함수는 라벨의 리스트를 입력으로 받아, 각 라벨을 한글로 번역한 후, 번역된 라벨의 리스트를 반환합니다:
+// import 'package:googleapis/translate/v2.dart' as translate;
+// import 'package:googleapis_auth/auth_io.dart' as auth;
 //
-// final recentAssets = await recentAlbum.getAssetListRange(start: 0, end: 1000000);
+// final _credentials = auth.ServiceAccountCredentials.fromJson({
+//   // 여기에 Google Cloud Console에서 생성한 서비스 계정 키를 입력합니다.
+// });
 //
-// for (final asset in recentAssets) {
-//   if (asset.creationDateTime!.isAfter(startDate) &&
-//       asset.creationDateTime!.isBefore(endDate)) {
-//     final file = await asset.originFile;
-//     final inputImage = InputImage.fromFilePath(file!.path);
-//     final imageLabeler =
-//         ImageLabeler(options: ImageLabelerOptions(confidenceThreshold: 0.7));
+// final _scopes = [translate.TranslateApi.CloudTranslationScope];
 //
-//     try {
-//       final labels = await imageLabeler.processImage(inputImage);
-//       final tags = labels.map((label) => label.label).join(',');
+// Future<List<String>> translateLabels(List<String> labels) async {
+//   final client = await auth.clientViaServiceAccount(_credentials, _scopes);
+//   final translateApi = translate.TranslateApi(client);
 //
-//       await _database?.insert('photos', {'path': file.path, 'tags': tags});
-//     } catch (e) {
-//       // Handle any errors here
-//     } finally {
-//       imageLabeler.close();
-//     }
-//   }
+//   final response = await translateApi.translations.list(labels, 'ko');
+//   return response.translations.map((t) => t.translatedText).toList();
 // }
 
-//모든 사진을 가져온 후 Dart 코드에서 필터링을 수행해야 합니다.
-// 이 코드는 getAssetListRange 메서드를 사용하여 모든 사진을 가져온 후, 각 사진의 creationDateTime이 최근 한 달 이내인지 확인합니다.
-// 만약 그렇다면, 해당 사진에 대해 라벨링을 수행하고 라벨을 데이터베이스에 저장합니다.
+//이제 translateLabels 함수를 사용하여 라벨을 한글로 번역하고, 번역된 라벨을 데이터베이스에 저장할 수 있습니다:
+
+//final labels = await imageLabeler.processImage(inputImage);
+// final englishTags = labels.map((label) => label.label).toList();
+// final koreanTags = await translateLabels(englishTags);
+//
+// await _database?.insert('photos', {'path': file.path, 'tags': englishTags.join(','), 'translated_tags': koreanTags.join(',')});
+
+//이 코드는 라벨을 한글로 번역한 후, 원본 라벨과 번역된 라벨을 모두 데이터베이스에 저장합니다.
+// 이렇게 하면, 사용자가 영어 또는 한글로 검색할 때 모두 결과를 반환할 수 있습니다.
+// 검색 기능을 구현할 때는, 사용자가 입력한 쿼리가 원본 라벨 또는 번역된 라벨 중 어느 것과도 일치하는 사진을 반환해야 합니다.
+// 이를 위해 SQL 쿼리에서 OR 연산자를 사용할 수 있습니다:
+
+// final query = 'SELECT * FROM photos WHERE tags LIKE ? OR translated_tags LIKE ?';
+// final results = await _database?.rawQuery(query, ['%$searchQuery%', '%$searchQuery%']);
+
+//이 코드는 사용자가 입력한 검색 쿼리가 원본 라벨 또는 번역된 라벨 중 어느 것과도 일치하는 사진을 검색합니다.
+
+// 안드로이드 매니페스트에 인터넷 권한을 추가할 것
+//<uses-permission android:name="android.permission.INTERNET" />
